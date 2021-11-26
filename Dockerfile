@@ -1,6 +1,6 @@
 #
 # NEURON Dockerfile
-#
+# Edited by Chris Currin for Neuron 8.0
 
 # Pull base image.
 FROM andrewosh/binder-base
@@ -18,17 +18,11 @@ WORKDIR neuron
 
 # Fetch NEURON source files, extract them, delete .tar.gz file.
 RUN \
-  wget http://www.neuron.yale.edu/ftp/neuron/versions/v7.4/nrn-7.4.tar.gz && \
-  tar -xzf nrn-7.4.tar.gz && \
-  rm nrn-7.4.tar.gz
+  wget https://neuron.yale.edu/ftp/neuron/versions/v8.0/8.0.0/8.0.0.tar.gz && \
+  tar -xzf nrn-8.0.0.tar.gz && \
+  rm nrn-8.0.0.tar.gz
 
-# Fetch Interviews.
-# RUN \
-#  wget http://www.neuron.yale.edu/ftp/neuron/versions/v7.4/iv-19.tar.gz  && \  
-#  tar -xzf iv-19.tar.gz && \
-#  rm iv-19.tar.gz
-
-WORKDIR nrn-7.4
+WORKDIR nrn-8.0.0
 
 # Compile NEURON.
 RUN \
@@ -42,7 +36,7 @@ RUN python setup.py install
 
 # Install PyNeuron-Toolbox
 WORKDIR $HOME
-RUN git clone https://github.com/ahwillia/PyNeuron-Toolbox
+RUN git clone https://github.com/ChrisCurrin/PyNeuron-Toolbox
 WORKDIR PyNeuron-Toolbox
 RUN python setup.py install
 
