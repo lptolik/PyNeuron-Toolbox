@@ -1,5 +1,5 @@
 import numpy as np
-from morphology import allsec_preorder
+from PyNeuronToolbox.morphology import allsec_preorder
 
 def ez_record(h,var='v',sections=None,order=None,\
               targ_names=None,cust_labels=None):

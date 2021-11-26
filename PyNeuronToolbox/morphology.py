@@ -520,7 +520,8 @@ def branch_precedence(h):
 
 
 from neuron import h
-from neuron.rxd.morphology import parent, parent_loc
+from neuron.rxd.section1d import _parent as parent
+parent_loc = lambda sec, my_parent: my_parent.x
 import json
 
 def morphology_to_dict(sections, outfile=None):
