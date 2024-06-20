@@ -142,19 +142,19 @@ def download(neuron_name, filename=None):
         f.write(morphology(neuron_name, format=format))
 
 if __name__ == '__main__':
-    print 'Demo of reading data from NeuroMorpho.Org'
-    print
+    print('Demo of reading data from NeuroMorpho.Org')
+    print()
 
     for string, fn in zip(['cell types', 'brain regions', 'species'], [cell_types, regions, species]):
-        print 'All %s:' % string
-        print ', '.join(fn())
-        print
+        print('All %s:' % string)
+        print(', '.join(fn()))
+        print()
     for category in ['amygdala', 'blowfly', 'Aspiny']:
-        print 'All %s:' % category
-        print ', '.join(cell_names(category))
-        print
-    print 'Metadata for mb100318-a:'
-    print json.dumps(metadata('mb100318-a'), indent=4)
-    print
-    print 'Morphology (standardized) for mb100318-a (first 10 lines):'
-    print '\n'.join(morphology('mb100318-a', format='standardized').split('\n')[:10])
+        print('All %s:' % category)
+        print(', '.join(cell_names(category)))
+        print()
+    print('Metadata for mb100318-a:')
+    print(json.dumps(metadata('mb100318-a'), indent=4))
+    print()
+    print('Morphology (standardized) for mb100318-a (first 10 lines):')
+    print('\n'.join(morphology('mb100318-a', format='standardized').split('\n')[:10]))

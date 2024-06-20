@@ -41,9 +41,9 @@ def ez_record(h,var='v',sections=None,order=None,\
         for position in positions[1:-1]:
             # record data
             data.append(h.Vector())
-            if var is 'v':
+            if var == 'v':
                 data[-1].record(sec(position)._ref_v)
-            elif var is 'cai':
+            elif var == 'cai':
                 data[-1].record(sec(position)._ref_cai)
             # determine labels
             if cust_labels is None:
