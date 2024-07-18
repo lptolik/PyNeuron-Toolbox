@@ -13,7 +13,7 @@ Installation
 =============
 Download or clone this repository, then run:
 
-`python setup.py install`
+`python3 setup.py install_`
 
 I am updating this repository on a semi-regular basis, so check back for updates and [contact me](http://alexhwilliams.info) if you have questions.
 

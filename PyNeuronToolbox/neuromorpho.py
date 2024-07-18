@@ -32,7 +32,8 @@ e.g. morphology('mb100318-a')
 An optional format keyword argument allows selecting between the original and the
 standardized versions.
 """
-import urllib2
+#import urllib2
+from urllib.request import urlopen
 import re
 import json
 import base64
@@ -41,7 +42,7 @@ _cache = {}
 
 def _read_neuromorpho_table(bywhat):
     """Helper function, reads data from NeuroMorpho.Org, stores in cache."""
-    html = urllib2.urlopen('http://neuromorpho.org/by%s.jsp' % bywhat).read()
+    html = urlopen('http://neuromorpho.org/by%s.jsp' % bywhat).read()
     result = [m.strip() for m in re.findall("maketable\('(.*?)'\)", html)]
     _cache[bywhat] = set(result)
     return result
@@ -83,7 +84,7 @@ def _get_data_for_by(bywhat, category):
     """Helper function for cell_names."""
     query_code = bywhat if bywhat != 'cell' else 'class'
 
-    html = urllib2.urlopen('http://neuromorpho.org/getdataforby%s.jsp?%s=%s' % (bywhat, query_code, category.replace(' ', '%20'))).read()
+    html = urlopen('http://neuromorpho.org/getdataforby%s.jsp?%s=%s' % (bywhat, query_code, category.replace(' ', '%20'))).read()
     return [m for m in re.findall("neuron_name=(.*?)'", html)]
 
 def metadata(neuron_name):
@@ -93,7 +94,7 @@ def metadata(neuron_name):
 
         metadata('mb100318-a')
     """
-    html = urllib2.urlopen('http://neuromorpho.org/neuron_info.jsp?neuron_name=%s' % neuron_name).read()
+    html = urlopen('http://neuromorpho.org/neuron_info.jsp?neuron_name=%s' % neuron_name).read()
     # remove non-breaking spaces
     html = html.replace('&nbsp;', ' ')
 
@@ -125,12 +126,12 @@ def morphology(neuron_name, format='swc'):
     url_paths_from_format = {'swc': 'CNG%20Version', 'original': 'Source-Version'}
     assert(format in url_paths_from_format)
     # locate the path to the downloads
-    html = urllib2.urlopen('http://neuromorpho.org/neuron_info.jsp?neuron_name=%s' % neuron_name).read()
+    html = urlopen('http://neuromorpho.org/neuron_info.jsp?neuron_name=%s' % neuron_name).read()
     if format == 'swc':
         url = re.findall("<a href=dableFiles/(.*?)>Morphology File \(Standardized", html)[0]
     else:
         url = re.findall("<a href=dableFiles/(.*?)>Morphology File \(Original", html)[0]
-    return urllib2.urlopen('http://NeuroMorpho.org/dableFiles/%s' % url).read()
+    return urlopen('http://NeuroMorpho.org/dableFiles/%s' % url).read()
 
 def download(neuron_name, filename=None):
     format = 'swc'
