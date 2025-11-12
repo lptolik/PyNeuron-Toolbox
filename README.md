@@ -15,14 +15,11 @@ Download or clone this repository, then run:
 
 `python3 setup.py install_`
 
-I am updating this repository on a semi-regular basis, so check back for updates and [contact me](http://alexhwilliams.info) if you have questions.
-
-Future Plans
-============
-I would like to add functions to support:
-
-* [Morphoelectric Transforms](http://zadorlab.cshl.edu/PDF/zador-thesis1993.pdf)
+I am updating this repository on a semi-regular basis, so check back for updates or [contact author](http://alexhwilliams.info) if you have questions.
 
 Suggested Citation
 ==================
 Alex H Williams. (2014). PyNeuron-Toolbox. *GitHub Repository*. https://github.com/ahwillia/PyNeuron-Toolbox DOI:10.5281/zenodo.12576
+
+Oksana Sorokina. (2025). Protein trafficking and synaptic demand configure complex and dynamic synaptome architectures of individual neurons. https://www.biorxiv.org/content/10.1101/2025.07.31.667853v1
+

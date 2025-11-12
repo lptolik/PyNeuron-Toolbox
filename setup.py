@@ -5,9 +5,9 @@ LONG_DESCRIPTION = DESCRIPTION
 NAME = "PyNeuronToolbox"
 AUTHOR = "Alex Williams"
 AUTHOR_EMAIL = "alex.h.willia@gmail.com"
-MAINTAINER = "Alex Williams"
-MAINTAINER_EMAIL = "alex.h.willia@gmail.com"
-DOWNLOAD_URL = 'http://github.com/ahwillia/PyNeuronToolbox'
+MAINTAINER = "Anatoly Sorokin"
+MAINTAINER_EMAIL = "lptolik@gmail.com"
+DOWNLOAD_URL = 'http://github.com/lptolik/PyNeuronToolbox'
 LICENSE = 'BSD'
 
 VERSION = '0.1'
