@@ -13,7 +13,12 @@ Installation
 =============
 Download or clone this repository, then run:
 
-`python3 setup.py install`
+```
+conda create -n sushibelt3.9 python=3.9 numpy=1.22 scipy matplotlib
+conda activate sushibelt3.9
+pip install neuron==8.2.7
+python3 setup.py install
+```
 
 I am updating this repository on a semi-regular basis, so check back for updates or [contact author](http://alexhwilliams.info) if you have questions.
 
