@@ -43,7 +43,7 @@ _cache = {}
 def _read_neuromorpho_table(bywhat):
     """Helper function, reads data from NeuroMorpho.Org, stores in cache."""
     html = urlopen('http://neuromorpho.org/by%s.jsp' % bywhat).read()
-    result = [m.strip() for m in re.findall("maketable\('(.*?)'\)", html)]
+    result = [m.strip() for m in re.findall(r"maketable\('(.*?)'\)", html)]
     _cache[bywhat] = set(result)
     return result
 
@@ -85,7 +85,7 @@ def _get_data_for_by(bywhat, category):
     query_code = bywhat if bywhat != 'cell' else 'class'
 
     html = urlopen('http://neuromorpho.org/getdataforby%s.jsp?%s=%s' % (bywhat, query_code, category.replace(' ', '%20'))).read()
-    return [m for m in re.findall("neuron_name=(.*?)'", html)]
+    return [m for m in re.findall(r"neuron_name=(.*?)'", html)]
 
 def metadata(neuron_name):
     """Return a dict of the metadata for the specified neuron.
@@ -105,8 +105,8 @@ def metadata(neuron_name):
     html = html.replace('<b>x</b>', ' ')
     html = html.replace('<sup>3</sup>', '')
     html2 = html.replace('\n', '')
-    keys = [i[1][:-3].strip() for i in re.findall('<td align="right" width="50%"(.*?)>(.*?)</td>', html2)]
-    values = [i[1].strip() for i in re.findall('<td align="left"(.*?)>(.*?)</td>', html2)[2:]]
+    keys = [i[1][:-3].strip() for i in re.findall(r'<td align="right" width="50%"(.*?)>(.*?)</td>', html2)]
+    values = [i[1].strip() for i in re.findall(r'<td align="left"(.*?)>(.*?)</td>', html2)[2:]]
 
     return dict(zip(keys, values))
 
@@ -128,9 +128,9 @@ def morphology(neuron_name, format='swc'):
     # locate the path to the downloads
     html = urlopen('http://neuromorpho.org/neuron_info.jsp?neuron_name=%s' % neuron_name).read()
     if format == 'swc':
-        url = re.findall("<a href=dableFiles/(.*?)>Morphology File \(Standardized", html)[0]
+        url = re.findall(r"<a href=dableFiles/(.*?)>Morphology File \(Standardized", html)[0]
     else:
-        url = re.findall("<a href=dableFiles/(.*?)>Morphology File \(Original", html)[0]
+        url = re.findall(r"<a href=dableFiles/(.*?)>Morphology File \(Original", html)[0]
     return urlopen('http://NeuroMorpho.org/dableFiles/%s' % url).read()
 
 def download(neuron_name, filename=None):
